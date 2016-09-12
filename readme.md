@@ -1,7 +1,5 @@
 #Electron Boilerplate
 
-===
-
 Electron uses `chromium` and `nodejs` therefore `Common JS` modules are allowed as well as 99% of `ES6` (all but `import`) and Node's `process` are available. As this app will be runtime, there is no need to concatenate / transpile the `JS` as for a normal web build. 
 
 
@@ -46,3 +44,10 @@ There is currently no hotloading in this boilerplate. Nor constructive enviromen
 
 * The `--ignore` flag in the `electron-packager` build script has been ommitted. Currently a lot of development _junk_ is being unneccessarily included; albeit, harmless.
 * Build / Development Enviroments enhancements.
+
+#### BTW
+
+`electron-packager` at this release does some annoying permission stuff to packaged folders, whereby one cannot delete them on OSX. Remedy this with: 
+    
+    chmod 7 dirname
+    sudo rm -R dirname
