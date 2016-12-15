@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow
 require('electron-debug')()
 
 let master
-// let config = require('./config')
+let config = require('./config')
 let index = `file://${__dirname}/index.html`
 
 // if (process.env.NODE_ENV === 'development') {
@@ -16,20 +16,20 @@ let index = `file://${__dirname}/index.html`
 // }
 
 function init () {
-  master = new BrowserWindow({
-    height: 600,
-    width: 800
-  })
-  
-  master.loadURL(index)
-  /**
-   * TODO:
-   * debugging 
-   * dev | prod modes using npm | build .. "NODE_ENV=production node ./app"
-   * see https://github.com/SimulatedGREG/electron-vue/blob/master/template/config.js
-   */
-  
-  master.on('closed', () => master = null)
+    master = new BrowserWindow({
+        height: config.app.width,,
+        width: config.app.height
+    })
+
+    master.loadURL(index)
+    /**
+    * TODO:
+    * debugging 
+    * dev | prod modes using npm | build .. "NODE_ENV=production node ./app"
+    * see https://github.com/SimulatedGREG/electron-vue/blob/master/template/config.js
+    */
+    if(config.app.fullscreen) master.setFullScreen(true)
+    master.on('closed', () => master = null)
 }
 
 app.on('ready', init)
