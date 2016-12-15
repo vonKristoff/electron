@@ -1,4 +1,4 @@
-I.DS_Store
+.DS_Store
 node_modules
 app
 css

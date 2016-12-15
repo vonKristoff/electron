@@ -17,12 +17,16 @@
     "npm-run-all": "^1.2.13",
     "onchange": "^3.0.0",
     "stylus": "latest",
-    "watch": "latest"
+    "watch": "latest",
+    "rollup": "^0.34.11",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-commonjs": "^4.1.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-string": "^2.0.2",
   },
   "dependencies": {
-    "rx-lite": "latest",
     "vue": "latest",
-    "vue-rx": "^1.0.0"
+    "vue-router": "latest"
   },
   "main": "electron.js",
   "scripts": {
@@ -30,16 +34,19 @@
     "build": "npm-run-all --parallel build:*",
     "electron:boot": "electron .",
     "server:localhost": "live-server ./ --port=3000",
-    "listen:js": "onchange 'js/**/*.js' -- jshint --reporter=node_modules/jshint-stylish/stylish js/.; exit 0",
+    "listen:js": "onchange 'js/**/*.js' -- npm run compile:bundle",
     "listen:views": "onchange 'jade/views/*.jade' -- npm run compile:pages",
     "listen:templates": "onchange jade/components/**/*.jade -- npm run compile:templates",
     "listen:stylus": "onchange 'stylus/**/*.styl' -- npm run compile:css",
     "compile:css": "stylus -u nib stylus/style.styl -o css/style.css",
     "compile:pages": "jade --obj '{dev:true}' jade/views -o ./",
     "compile:templates": "jade jade/components -o js/templates/",
+    "precompile:bundle": "jshint --reporter=node_modules/jshint-stylish/stylish js/.; exit 0",
+    "compile:bundle": "rollup -c",
     "build:css": "stylus -u nib stylus/style.styl -o css/style.css",
     "build:views": "onchange 'jade/views/*.jade' -- npm run compile:pages",
     "build:templates": "onchange jade/components/**/*.jade -- npm run compile:templates",
-    "build:electron": "electron-packager . --out=app --all"
+    "build:bundle": "rollup -c",
+    "build:windows": "electron-packager . --out=build --all --no-prune --overwrite"
   }
 }
