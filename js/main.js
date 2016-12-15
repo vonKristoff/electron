@@ -4,7 +4,7 @@ import Route from './routes'
 
 Vue.use(VueRouter)
 
-const router = new VueRouter({ routes: Rout.routes })
+const router = new VueRouter({ routes: Route.routes })
 const app = new Vue({
     router,
     data: {}
