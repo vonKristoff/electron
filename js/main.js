@@ -1,9 +1,11 @@
-let Vue = require('vue')
+import Vue from 'vue/dist/vue.js'
+import VueRouter from 'vue-router'
+import Route from './routes'
 
+Vue.use(VueRouter)
+
+const router = new VueRouter({ routes: Rout.routes })
 const app = new Vue({
-    el: '#root',
-    components: [],
-    data: {
-        message: "Using Vue to render this message"
-    }
-})
+    router,
+    data: {}
+}).$mount('#root')
