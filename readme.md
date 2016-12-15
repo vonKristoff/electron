@@ -1,5 +1,7 @@
 #Electron Boilerplate
 
+**important notice** any node dependency that is required in the runtime of the app ie: `electron` and is kept in the `devDependencies` list @ `package.json` will not be included in the build process. Move them into deps list instead, or use `--no-prune` flag on `electron build`
+
 Electron uses `chromium` and `nodejs` therefore `Common JS` modules are allowed as well as 99% of `ES6` (all but `import`) and Node's `process` are available. As this app will be runtime, there is no need to concatenate / transpile the `JS` as for a normal web build. 
 
 
